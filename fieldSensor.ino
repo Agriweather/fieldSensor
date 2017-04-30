@@ -96,6 +96,12 @@ int readBatteryVoltage() {
     return 0;
   }
 
+void sleepTenSeconds()
+{
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_2S, ADC_OFF, BOD_OFF);
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -107,12 +113,14 @@ void setup() {
 }
 
 void loop() {  // put your main code here, to run repeatedly:
+  /*
   digitalWrite(LED_BUILTIN, HIGH);
   delay(1000);
   digitalWrite(LED_BUILTIN, LOW);
   LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
  
   delay(1000);
+  */
   
   Serial.print("col0=");
   Serial.print(DEVICE_ID);
@@ -135,4 +143,6 @@ void loop() {  // put your main code here, to run repeatedly:
 //   Serial.print(",");
 //   Serial.print(temp_2);
 //   Serial.print("==");
+
+  sleepTenSeconds();
 }
