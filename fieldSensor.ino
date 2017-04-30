@@ -2,9 +2,12 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Wire.h>
+#include <SoftwareSerial.h>
 
 #include "LowPower.h"
 
+
+#define DEVICE_ID "AgriWeather1"
 
 #define ONE_WIRE_BUS_1 2
 #define ONE_WIRE_BUS_2 3
@@ -15,6 +18,8 @@ OneWire onewire_2(ONE_WIRE_BUS_2);
 
 DallasTemperature temp_sensor_1(&oneWire_1);
 DallasTemperature temp_sensor_2(&onewire_2);
+
+SoftwareSerial lora(10, 9);
 
 float temp_1 = 0;
 float temp_2 = 0;
@@ -74,6 +79,7 @@ int readBatteryVoltage() {
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  lora.begin(9600);
   pinMode(LED_BUILTIN,OUTPUT);
   temp_sensor_1.begin();
   temp_sensor_2.begin();
@@ -84,10 +90,14 @@ void loop() {  // put your main code here, to run repeatedly:
   digitalWrite(LED_BUILTIN, HIGH);
   delay(1000);
   digitalWrite(LED_BUILTIN, LOW);
-  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+//  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
  
   delay(1000);
   
+  Serial.print("col0=");
+  Serial.print(DEVICE_ID);
+  lora.print("col0=");
+  lora.print(DEVICE_ID);
   read_temp_1();
   read_temp_2();
   readMositureA0();
