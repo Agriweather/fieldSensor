@@ -37,6 +37,10 @@ void read_temp_1() {
     Serial.print("col1=");
     Serial.print(temp_1);
     Serial.print("&");
+
+    lora.print("col1=");
+    lora.print(temp_1);
+    lora.print("&");
 }
 
 void read_temp_2() {
@@ -50,6 +54,10 @@ void read_temp_2() {
     Serial.print("col2=");
     Serial.print(temp_2);
     Serial.print("&");
+
+    lora.print("col2=");
+    lora.print(temp_2);
+    lora.print("&");
 }
 
 int readMositureA0() {
@@ -57,6 +65,10 @@ int readMositureA0() {
     Serial.print("col3=");
     Serial.print(moisture0);
     Serial.print("&");
+
+    lora.print("col3=");
+    lora.print(moisture0);
+    lora.print("&");
     return 0;
 }
 
@@ -65,6 +77,10 @@ int readMositureA1() {
     Serial.print("col4=");
     Serial.print(moisture1);
     Serial.print("&");
+
+    lora.print("col4=");
+    lora.print(moisture1);
+    lora.print("&");
     return 0;
 }
 
@@ -72,6 +88,10 @@ int readBatteryVoltage() {
     Serial.print("col5=");
     voltage = analogRead(A7);
     Serial.println(voltage);
+
+    lora.print("col5=");
+    voltage = analogRead(A7);
+    lora.println(voltage);
    
     return 0;
   }
@@ -90,14 +110,20 @@ void loop() {  // put your main code here, to run repeatedly:
   digitalWrite(LED_BUILTIN, HIGH);
   delay(1000);
   digitalWrite(LED_BUILTIN, LOW);
-//  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
  
   delay(1000);
   
   Serial.print("col0=");
   Serial.print(DEVICE_ID);
+  Serial.print("&");
+
+  
   lora.print("col0=");
   lora.print(DEVICE_ID);
+  lora.print("&");
+
+  
   read_temp_1();
   read_temp_2();
   readMositureA0();
