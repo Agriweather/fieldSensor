@@ -1,0 +1,17 @@
+1.Main Chip
+  Arduino Mini 3.3V 8MHz
+
+2.Sensor
+  a.Digital Thermometer DS18B20
+  b.Capacitive Soil Moisture Sensor 
+    https://www.dfrobot.com/wiki/index.php/Capacitive_Soil_Moisture_Sensor_SKU:SEN0193
+
+3.Battery
+  a.18650 2200mA
+
+4.Solar power (charger)
+  a. 5V 2W with control panel
+	http://goods.ruten.com.tw/item/show?21449876770780
+5.Wireless commucation
+  a.Lora
+
